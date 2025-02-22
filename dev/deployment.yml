@@ -16,4 +16,4 @@ spec:
       - name: myapp
         image: cloudamqp/lavinmq
         ports:
-        - containerPort: 8080
+        - containerPort: 5672

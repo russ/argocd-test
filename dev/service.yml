@@ -6,6 +6,6 @@ spec:
   selector:
     app: myapp
   ports:
-  - port: 15672
+  - port: 5672
     protocol: TCP
     targetPort: 5672
