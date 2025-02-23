@@ -27,7 +27,7 @@ spec:
               - /bin/sh
               - c
               - exec pg_isread -U "postgres" -h 127.0.0.1 -p 5432
-            initialDelaySeconds:
-            periodSeconds: 10
-            timeoutSeconds: 10
-            failureThresold: 3
+          initialDelaySeconds:
+          periodSeconds: 10
+          timeoutSeconds: 10
+          failureThresold: 3
