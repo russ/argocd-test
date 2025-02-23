@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: video-processor-app
+spec:
+  selector:
+    matchLabels:
+      app: video-processor-app
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: video-processor-app
+    spec:
+      containers:
+      - name: app
+        image: rails
+        ports:
+        - containerPort: 3000
