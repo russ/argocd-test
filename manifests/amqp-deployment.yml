@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: myapp
+  name: video-processor-amqp
 spec:
   selector:
     matchLabels:
-      app: myapp
+      app: video-processor-amqp
   replicas: 1
   template:
     metadata:
       labels:
-        app: myapp
+        app: video-processor-amqp
     spec:
       containers:
-      - name: myapp
+      - name: lavinmq
         image: cloudamqp/lavinmq
         ports:
         - containerPort: 15672

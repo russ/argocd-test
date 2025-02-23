@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: video-processor-postgres
+spec:
+  selector:
+    matchLabels:
+      app: video-processor-postgres
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: video-processor-postgres
+    spec:
+      containers:
+      - name: postgres
+          image: postgres
+        ports:
+        - containerPort: 5432
