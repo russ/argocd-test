@@ -1,16 +1,20 @@
-apiVersion: apps/v1
 kind: Deployment
+apiVersion: apps/v1
 metadata:
   name: video-processor-postgres
+  labels:
+    app.kubernetes.io/name: video-processor-postgres
+  annotations:
+    argocd.argoproj.io/sync-wave: "-10" 
 spec:
+  replicas: 1
   selector:
     matchLabels:
-      app: video-processor-postgres
-  replicas: 1
+      app.kubernetes.io/name: video-processor-postgres
   template:
     metadata:
       labels:
-        app: video-processor-postgres
+        app.kubernetes.io/name: video-processor-postgres
     spec:
       containers:
       - name: postgres
@@ -18,16 +22,17 @@ spec:
         ports:
         - name: postgres
           containerPort: 5432
+          protocol: TCP
+        livenessProbe:
+          exec:
+            command:
+            - /bin/sh
+            - c
+            - exec pg_isready -U "postgres" -h 127.0.0.1 -p 5432
+          initialDelaySeconds:
+          periodSeconds: 10
+          timeoutSeconds: 10
+          failureThresold: 3
         env:
         - name: POSTGRES_PASSWORD
           value: password
-        # livenessProbe:
-        #   exec:
-        #     command:
-        #       - /bin/sh
-        #       - c
-        #       - exec pg_isread -U "postgres" -h 127.0.0.1 -p 5432
-        #   initialDelaySeconds:
-        #   periodSeconds: 10
-        #   timeoutSeconds: 10
-        #   failureThresold: 3
