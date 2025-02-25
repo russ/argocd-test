@@ -15,7 +15,5 @@ spec:
       containers:
       - name: app
         image: registry.digitalocean/ama/video-processor:0.1.0
-        imagePullSecrets:
-        - name: do-registry
         ports:
         - containerPort: 3000
