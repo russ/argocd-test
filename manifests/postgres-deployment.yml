@@ -28,7 +28,7 @@ spec:
           initialDelaySeconds:
           periodSeconds: 10
           timeoutSeconds: 10
-          failureThresold: 3
+          failureThreshold: 3
         env:
         - name: POSTGRES_PASSWORD
           value: password
