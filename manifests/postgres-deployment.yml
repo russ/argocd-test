@@ -2,8 +2,6 @@ kind: Deployment
 apiVersion: apps/v1
 metadata:
   name: video-processor-postgres
-  annotations:
-    argocd.argoproj.io/sync-wave: "-10"
 spec:
   replicas: 1
   selector:

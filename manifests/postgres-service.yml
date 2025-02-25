@@ -2,8 +2,6 @@ kind: Service
 apiVersion: v1
 metadata:
   name: video-processor-postgres-service
-  annotations:
-    argocd.argoproj.io/sync-wave: "2"
 spec:
   selector:
     app: video-processor-postgres
