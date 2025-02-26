@@ -18,5 +18,28 @@ spec:
         image: registry.digitalocean.com/ama/video-processor:0.1.0
         ports:
         - containerPort: 3000
+        env:
+        - name: AMQP_TOPIC_NAME
+          value: "video_processor"
+        - name: AMQP_URL
+          value: "amqp://guest:guest@amqp"
+        - name: API_KEY
+          value: "apikey"
+        - name: APP_DOMAIN
+          value: "vp.vp.vp"
+        - name: AUTH_USERNAME
+          value: "admin"
+        - name: AUTH_PASSWORD
+          value: "password"
+        - name: LUCKY_ENV
+          value: "staging"
+        - name: SLACK_NOTIFICATION_URL
+          value: "https://hooks.slack.com/"
+        - name: UPLOAD_KEY
+          value: "uploadkey"
+        - name: UPLOAD_PATH
+          value: "uploadpath"
+        - name: DATABASE_URL
+          value: "postgres://postgres:password@postgres/video_processor"
       imagePullSecrets:
       - name: registry-ama
