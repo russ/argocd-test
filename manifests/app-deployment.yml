@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: app
-        image: registry.digitalocean.com/ama/video-processor:latest
+        image: registry.digitalocean.com/ama/video-processor:0.1.1
         ports:
         - containerPort: 3000
         env:
