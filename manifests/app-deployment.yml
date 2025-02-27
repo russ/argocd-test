@@ -22,7 +22,7 @@ spec:
         - name: AMQP_TOPIC_NAME
           value: "video_processor"
         - name: AMQP_URL
-          value: "amqp://guest:guest@amqp"
+          value: "amqp://guest:guest@video-processor-amqp-service.myapp.svc.cluster.local"
         - name: API_KEY
           value: "apikey"
         - name: APP_DOMAIN
@@ -44,6 +44,6 @@ spec:
         - name: UPLOAD_PATH
           value: "uploadpath"
         - name: DATABASE_URL
-          value: "postgres://postgres:password@postgres/video_processor"
+          value: "postgres://postgres:password@video-processor-postgres-service.myapp.svc.cluster.local/video_processor"
       imagePullSecrets:
       - name: registry-ama
