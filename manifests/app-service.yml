@@ -6,6 +6,6 @@ spec:
   selector:
     app: video-processor-app
   ports:
-  - port: 80
-    protocol: TCP
-    targetPort: 80
+    - port: 80
+      protocol: TCP
+      targetPort: 3000
