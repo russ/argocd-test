@@ -16,6 +16,7 @@ spec:
       containers:
       - name: worker
         image: registry.digitalocean.com/ama/video-processor:0.1.2
+        command: ["/app/worker"]
         ports:
         - containerPort: 3000
         env:
