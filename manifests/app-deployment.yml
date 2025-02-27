@@ -34,7 +34,9 @@ spec:
         - name: BUGSNAG_API_KEY
           value: "beetlejuice"
         - name: LUCKY_ENV
-          value: "staging"
+          value: "production"
+        - name: SECRET_KEY_BASE
+          value: "Sgps3KWKODpvSJE/Erittw9UXRgf76Q218cnTAH+3l0="
         - name: SLACK_NOTIFICATION_URL
           value: "https://hooks.slack.com/"
         - name: UPLOAD_KEY
