@@ -3,6 +3,7 @@ kind: Service
 metadata:
   name: video-processor-app-service
 spec:
+  type: LoadBalancer
   selector:
     app: video-processor-app
   ports:
