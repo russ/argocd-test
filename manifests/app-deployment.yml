@@ -31,6 +31,8 @@ spec:
           value: "admin"
         - name: AUTH_PASSWORD
           value: "password"
+        - name: BUGSNAG_API_KEY
+          value: "beetlejuice"
         - name: LUCKY_ENV
           value: "staging"
         - name: SLACK_NOTIFICATION_URL
