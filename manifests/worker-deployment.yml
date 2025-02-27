@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: worker
-        image: registry.digitalocean.com/ama/video-processor:0.1.2
+        image: registry.digitalocean.com/ama/video-processor:0.1.3
         command: ["/app/worker"]
         ports:
         - containerPort: 3000
