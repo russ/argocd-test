@@ -7,7 +7,7 @@ spec:
   selector:
     matchLabels:
       app: video-processor-worker
-  replicas: 6
+  replicas: 2
   template:
     metadata:
       labels:
