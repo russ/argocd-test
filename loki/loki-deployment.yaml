@@ -13,6 +13,23 @@ spec:
       labels:
         app: loki
     spec:
+      securityContext:
+        fsGroup: 10001
+        runAsGroup: 10001
+        runAsNonRoot: true
+        runAsUser: 10001
+      initContainers:
+        - name: init-permissions
+          image: busybox
+          command:
+            [
+              "sh",
+              "-c",
+              "mkdir -p /data/loki/wal /data/loki/chunks /data/loki/index /data/loki/index_cache /data/loki/compactor && chmod -R 777 /data/loki",
+            ]
+          volumeMounts:
+            - name: storage
+              mountPath: /data
       containers:
         - name: loki
           image: grafana/loki:2.8.0
