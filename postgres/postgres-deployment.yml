@@ -13,9 +13,21 @@ spec:
       labels:
         app: postgres
     spec:
+      securityContext:
+        fsGroup: 10001
+        runAsGroup: 10001
+        runAsNonRoot: true
+        runAsUser: 10001
+      initContainers:
+        - name: pgsql-data-permission-fix
+          image: busybox
+          command: ["/bin/chmod", "-R", "777", "/data"]
+          volumeMounts:
+            - name: storage
+              mountPath: /data
       containers:
         - name: postgres
-          image: postgres
+          image: postgres:latest
           ports:
             - name: postgres
               containerPort: 5432
@@ -23,3 +35,12 @@ spec:
           env:
             - name: POSTGRES_PASSWORD
               value: password
+          volumeMounts:
+            - name: storage
+              mountPath: "/var/lib/postgresql"
+          resources:
+            limits:
+              memory: 1Gi
+            requests:
+              cpu: 100m
+              memory: 256Mi
