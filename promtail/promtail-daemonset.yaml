@@ -18,6 +18,12 @@ spec:
           image: grafana/promtail:2.8.0
           args:
             - -config.file=/etc/promtail/promtail.yaml
+            - -config.expand-env=true
+          env:
+            - name: HOSTNAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: spec.nodeName
           volumeMounts:
             - name: config
               mountPath: /etc/promtail
@@ -33,8 +39,8 @@ spec:
             - containerPort: 9080
               name: http-metrics
           securityContext:
-            readOnlyRootFilesystem: true
             runAsUser: 0
+            readOnlyRootFilesystem: false
           resources:
             limits:
               memory: 256Mi
@@ -48,6 +54,7 @@ spec:
         - name: run
           hostPath:
             path: /run/promtail
+            type: DirectoryOrCreate
         - name: pods
           hostPath:
             path: /var/log/pods
