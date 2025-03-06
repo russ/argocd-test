@@ -17,13 +17,6 @@ spec:
       securityContext:
         fsGroup: 999 # PostgreSQL's default group
         runAsUser: 999 # PostgreSQL's default user
-      initContainers:
-        - name: pgsql-data-permission-fix
-          image: busybox
-          command: ["/bin/chmod", "-R", "777", "/data"]
-          volumeMounts:
-            - name: postgres-data
-              mountPath: /data
       containers:
         - name: postgres
           image: postgres:latest
