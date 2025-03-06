@@ -1,17 +1,17 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: video-processor-worker
-  namespace: myapp
+  name: worker
+  namespace: video-processor
 spec:
   selector:
     matchLabels:
-      app: video-processor-worker
+      app: worker
   replicas: 2
   template:
     metadata:
       labels:
-        app: video-processor-worker
+        app: worker
     spec:
       containers:
         - name: worker
@@ -24,7 +24,7 @@ spec:
             - name: AMQP_TOPIC_NAME
               value: "video_processor"
             - name: AMQP_URL
-              value: "amqp://guest:guest@video-processor-amqp-service.myapp.svc.cluster.local"
+              value: "amqp://guest:guest@amqp-service.amqp.svc.cluster.local"
             - name: API_KEY
               value: "apikey"
             - name: APP_DOMAIN
@@ -46,6 +46,6 @@ spec:
             - name: UPLOAD_PATH
               value: "uploadpath"
             - name: DATABASE_URL
-              value: "postgres://postgres:password@video-processor-postgres-service.myapp.svc.cluster.local/video_processor"
+              value: "postgres://postgres:password@postgres-service.postgres.svc.cluster.local/video_processor"
       imagePullSecrets:
         - name: registry-ama

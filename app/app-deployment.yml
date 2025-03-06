@@ -44,6 +44,6 @@ spec:
             - name: UPLOAD_PATH
               value: "uploadpath"
             - name: DATABASE_URL
-              value: "postgres://postgres:password@postgres.postgres.svc.cluster.local/video_processor"
+              value: "postgres://postgres:password@postgres-service.postgres.svc.cluster.local/video_processor"
       imagePullSecrets:
         - name: registry-ama
