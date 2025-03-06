@@ -32,12 +32,6 @@ spec:
             - >
               fluent-gem i fluent-plugin-grafana-loki-licence-fix ;
               tini /fluentd/entrypoint.sh;
-          resources:
-            limits:
-              memory: 200Mi
-            requests:
-              cpu: 100m
-              memory: 200Mi
           volumeMounts:
             - name: varlog
               mountPath: /var/log
