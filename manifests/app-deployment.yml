@@ -14,36 +14,36 @@ spec:
         app: video-processor-app
     spec:
       containers:
-      - name: app
-        image: registry.digitalocean.com/ama/video-processor:0.1.2
-        ports:
-        - containerPort: 3000
-        env:
-        - name: AMQP_TOPIC_NAME
-          value: "video_processor"
-        - name: AMQP_URL
-          value: "amqp://guest:guest@video-processor-amqp-service.myapp.svc.cluster.local"
-        - name: API_KEY
-          value: "apikey"
-        - name: APP_DOMAIN
-          value: "vp.vp.vp"
-        - name: AUTH_USERNAME
-          value: "admin"
-        - name: AUTH_PASSWORD
-          value: "password"
-        - name: BUGSNAG_API_KEY
-          value: "beetlejuice"
-        - name: LUCKY_ENV
-          value: "production"
-        - name: SECRET_KEY_BASE
-          value: "Sgps3KWKODpvSJE/Erittw9UXRgf76Q218cnTAH+3l0="
-        - name: SLACK_NOTIFICATION_URL
-          value: "https://hooks.slack.com/"
-        - name: UPLOAD_KEY
-          value: "uploadkey"
-        - name: UPLOAD_PATH
-          value: "uploadpath"
-        - name: DATABASE_URL
-          value: "postgres://postgres:password@video-processor-postgres-service.myapp.svc.cluster.local/video_processor"
+        - name: app
+          image: registry.digitalocean.com/ama/video-processor:0.1.2
+          ports:
+            - containerPort: 3000
+          env:
+            - name: AMQP_TOPIC_NAME
+              value: "video_processor"
+            - name: AMQP_URL
+              value: "amqp://guest:guest@video-processor-amqp-service.myapp.svc.cluster.local"
+            - name: API_KEY
+              value: "apikey"
+            - name: APP_DOMAIN
+              value: "vp.vp.vp"
+            - name: AUTH_USERNAME
+              value: "admin"
+            - name: AUTH_PASSWORD
+              value: "password"
+            - name: BUGSNAG_API_KEY
+              value: "beetlejuice"
+            - name: LUCKY_ENV
+              value: "production"
+            - name: SECRET_KEY_BASE
+              value: "Sgps3KWKODpvSJE/Erittw9UXRgf76Q218cnTAH+3l0="
+            - name: SLACK_NOTIFICATION_URL
+              value: "https://hooks.slack.com/"
+            - name: UPLOAD_KEY
+              value: "uploadkey"
+            - name: UPLOAD_PATH
+              value: "uploadpath"
+            - name: DATABASE_URL
+              value: "postgres://postgres:password@postgres.postgres.svc.cluster.local/video_processor"
       imagePullSecrets:
-      - name: registry-ama
+        - name: registry-ama
