@@ -15,14 +15,17 @@ spec:
         app: postgres
     spec:
       securityContext:
-        fsGroup: 10001
-        runAsGroup: 10001
-        runAsNonRoot: true
-        runAsUser: 10001
+        fsGroup: 999 # PostgreSQL's default group
+        runAsUser: 999 # PostgreSQL's default user
       initContainers:
         - name: pgsql-data-permission-fix
           image: busybox
-          command: ["/bin/sh", "-c", "chmod -R 777 /var/lib/postgresql/data"]
+          command:
+            [
+              "/bin/sh",
+              "-c",
+              "chown -R 999:999 /var/lib/postgresql/data || true",
+            ]
           volumeMounts:
             - name: postgres-data
               mountPath: /var/lib/postgresql/data
