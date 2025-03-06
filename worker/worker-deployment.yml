@@ -44,10 +44,17 @@ spec:
             - name: UPLOAD_KEY
               value: "uploadkey"
             - name: UPLOAD_PATH
-              value: "uploadpath"
+              value: "/mnt/shared"
             - name: CLUSTER_COUNT
               value: "1"
             - name: DATABASE_URL
               value: "postgres://postgres:password@postgres-service.postgres.svc.cluster.local/video_processor"
+          volumeMounts:
+            - name: shared-storage
+              mountPath: /mnt/shared
       imagePullSecrets:
         - name: registry-ama
+      volumes:
+        - name: shared-storage
+          persistentVolumeClaim:
+            claimName: nfs-pvc
