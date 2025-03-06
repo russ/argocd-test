@@ -20,15 +20,10 @@ spec:
       initContainers:
         - name: pgsql-data-permission-fix
           image: busybox
-          command:
-            [
-              "/bin/sh",
-              "-c",
-              "chown -R 999:999 /var/lib/postgresql/data || true",
-            ]
+          command: ["/bin/chmod", "-R", "777", "/data"]
           volumeMounts:
             - name: postgres-data
-              mountPath: /var/lib/postgresql/data
+              mountPath: /data
       containers:
         - name: postgres
           image: postgres:latest
@@ -41,7 +36,7 @@ spec:
               value: password
           volumeMounts:
             - name: postgres-data
-              mountPath: "/var/lib/postgresql/data"
+              mountPath: /var/lib/postgresql/data
           resources:
             limits:
               memory: 1Gi
