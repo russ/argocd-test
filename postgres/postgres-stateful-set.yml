@@ -32,4 +32,3 @@ spec:
         resources:
           requests:
             storage: 10Gi
-        storageClassName: do-block-storage
