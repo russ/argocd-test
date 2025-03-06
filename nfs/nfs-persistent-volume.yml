@@ -9,5 +9,5 @@ spec:
     - ReadWriteMany
   persistentVolumeReclaimPolicy: Retain
   nfs:
-    server: nfs-service.nfs.svc.cluster.local
+    server: nfs.nfs.svc.cluster.local
     path: "/"
