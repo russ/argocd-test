@@ -45,6 +45,8 @@ spec:
               value: "uploadkey"
             - name: UPLOAD_PATH
               value: "uploadpath"
+            - name: CLUSTER_COUNT
+              value: "1"
             - name: DATABASE_URL
               value: "postgres://postgres:password@postgres-service.postgres.svc.cluster.local/video_processor"
       imagePullSecrets:
