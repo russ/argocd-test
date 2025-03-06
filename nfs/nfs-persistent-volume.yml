@@ -10,4 +10,4 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   nfs:
     path: /data
-    server: nfs.nfs.svc.cluster.local
+    server: nfs-server.nfs.svc.cluster.local
