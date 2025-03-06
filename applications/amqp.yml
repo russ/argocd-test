@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://gitlab.com/russ/argocd-test.git
+    repoURL: https://github.com/russ/argocd-test.git
     targetRevision: HEAD
     path: amqp
   destination:
