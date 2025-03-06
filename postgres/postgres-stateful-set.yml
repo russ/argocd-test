@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: postgres-stateful-set
+  name: postgres
   namespace: postgres
 spec:
   serviceName: postgres
@@ -14,15 +14,37 @@ spec:
       labels:
         app: postgres
     spec:
-      containers:
-        - name: postgres
+      securityContext:
+        fsGroup: 10001
+        runAsGroup: 10001
+        runAsNonRoot: true
+        runAsUser: 10001
+      initContainers:
+        - name: pgsql-data-permission-fix
           image: busybox
-          args:
-            - sleep
-            - infinity
+          command: ["/bin/sh", "-c", "chmod -R 777 /var/lib/postgresql/data"]
           volumeMounts:
             - name: postgres-data
-              mountPath: "/data"
+              mountPath: /var/lib/postgresql/data
+      containers:
+        - name: postgres
+          image: postgres:latest
+          ports:
+            - name: postgres
+              containerPort: 5432
+              protocol: TCP
+          env:
+            - name: POSTGRES_PASSWORD
+              value: password
+          volumeMounts:
+            - name: postgres-data
+              mountPath: "/var/lib/postgresql/data"
+          resources:
+            limits:
+              memory: 1Gi
+            requests:
+              cpu: 100m
+              memory: 256Mi
   volumeClaimTemplates:
     - metadata:
         name: postgres-data
