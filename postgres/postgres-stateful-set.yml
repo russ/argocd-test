@@ -4,28 +4,28 @@ metadata:
   name: postgres-stateful-set
   namespace: postgres
 spec:
+  serviceName: postgres
+  replicas: 1
   selector:
     matchLabels:
       app: postgres
-  serviceName: "my-frontend"
-  replicas: 1
   template:
     metadata:
       labels:
         app: postgres
     spec:
       containers:
-        - name: my-frontend
+        - name: postgres
           image: busybox
           args:
             - sleep
             - infinity
           volumeMounts:
-            - mountPath: "/data"
-              name: postgres-pvc
+            - name: postgres-data
+              mountPath: "/data"
   volumeClaimTemplates:
     - metadata:
-        name: postgres-pvc
+        name: postgres-data
       spec:
         accessModes:
           - ReadWriteOnce

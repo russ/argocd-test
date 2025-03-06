@@ -23,7 +23,7 @@ spec:
           image: busybox
           command: ["/bin/chmod", "-R", "777", "/data"]
           volumeMounts:
-            - name: postgres-pvc
+            - name: storage
               mountPath: /data
       containers:
         - name: postgres
@@ -36,7 +36,7 @@ spec:
             - name: POSTGRES_PASSWORD
               value: password
           volumeMounts:
-            - name: postgres-pvc
+            - name: storage
               mountPath: "/var/lib/postgresql"
           resources:
             limits:
