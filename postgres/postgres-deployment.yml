@@ -11,7 +11,7 @@ spec:
   template:
     metadata:
       labels:
-        app: video-processor-postgres
+        app: postgres
     spec:
       containers:
         - name: postgres
