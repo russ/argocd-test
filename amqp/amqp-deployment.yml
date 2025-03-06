@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: amqp
+spec:
+  selector:
+    matchLabels:
+      app: amqp
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: amqp
+    spec:
+      containers:
+        - name: lavinmq
+          image: cloudamqp/lavinmq
+          ports:
+            - containerPort: 15672
