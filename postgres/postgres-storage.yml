@@ -3,7 +3,7 @@ apiVersion: v1
 metadata:
   name: postgres-pv-volume
 spec:
-  storageClassName: manual
+  storageClassName: ebs-sc
   capacity:
     storage: 5Gi
   accessModes:
