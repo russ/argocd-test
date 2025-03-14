@@ -1,35 +1,26 @@
 apiVersion: apps/v1
-kind: StatefulSet
+kind: Deployment
 metadata:
   name: postgres
   namespace: postgres
 spec:
-  serviceName: postgres
   replicas: 1
-  selector:
-    matchLabels:
-      app: postgres
   template:
     metadata:
       labels:
-        app: postgres
+        run: postgres
     spec:
-      securityContext:
-        fsGroup: 999 # PostgreSQL's default group
-        runAsUser: 999 # PostgreSQL's default user
       containers:
         - name: postgres
-          image: postgres:latest
+          image: postgres:16-alpine3.20
           ports:
-            - name: postgres
-              containerPort: 5432
-              protocol: TCP
+            - containerPort: 5432
           env:
             - name: POSTGRES_PASSWORD
               value: password
           volumeMounts:
-            - name: postgres-storage
-              mountPath: "/var/lib/postgresql"
+            - mountPath: /var/lib/postgresql/data
+              name: postgres-vol
           resources:
             limits:
               memory: 1Gi
@@ -37,6 +28,6 @@ spec:
               cpu: 100m
               memory: 256Mi
       volumes:
-        - name: postgres-storage
+        - name: postgres-vol
           persistentVolumeClaim:
             claimName: postgres-pv-claim
