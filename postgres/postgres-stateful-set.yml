@@ -36,13 +36,7 @@ spec:
             requests:
               cpu: 100m
               memory: 256Mi
-  persistentVolumeClaim:
-    - metadata:
-        name: postgres-storage
-      spec:
-        storageClassName: ebs-sc
-        accessModes:
-          - ReadWriteOnce
-        resources:
-          requests:
-            storage: 5Gi
+      volumes:
+        - name: postgres-storage
+          persistentVolumeClaim:
+            claimName: postgres-pv-claim
