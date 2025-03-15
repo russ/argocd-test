@@ -2,9 +2,16 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: postgres
+  namespace: postgres
 spec:
   replicas: 1
+  selector:
+    matchLabels:
+      component: postgres
   template:
+    metadata:
+      labels:
+        component: postgres
     spec:
       containers:
         - name: postgres
@@ -17,6 +24,12 @@ spec:
           volumeMounts:
             - mountPath: /var/lib/postgresql/data
               name: postgres-vol
+          resources:
+            limits:
+              memory: 1Gi
+            requests:
+              cpu: 100m
+              memory: 256Mi
       volumes:
         - name: postgres-vol
           persistentVolumeClaim:
